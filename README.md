@@ -11,6 +11,7 @@ But hopefully can pull and run anywhere.
 ```choco install python311```
 ```pip3 install pynvim```
 ```choco install luarocks```
+```npm install -g tree-sitter-cli```
 
 # Issues
 ## No C compiler found! "cc", "gcc", "clang", "cl", "zig" are not executable.
