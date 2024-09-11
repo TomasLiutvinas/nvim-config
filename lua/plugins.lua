@@ -18,11 +18,12 @@ require("lazy").setup({
     "OmniSharp/omnisharp-vim", -- omnisharp autocomplete for .net
     "preservim/nerdtree", -- file browser with NT
     "dense-analysis/ale", -- ??
-    "BurntSushi/ripgrep",
-    "nvim-treesitter/nvim-treesitter-context",
-    "nvim-lua/plenary.nvim",
+    "BurntSushi/ripgrep", -- allows leadersg search grep
+    "nvim-treesitter/nvim-treesitter-context", -- ??
+    "numToStr/Comment.nvim", -- commenting/uncommenting
+    "nvim-lua/plenary.nvim", -- ??
     { -- Fuzzy Finder (files, lsp, etc)
-        'nvim-telescope/telescope.nvim',
+        'nvim-telescope/telescope.nvim', -- allows leader s f/k/g/d...
         event = 'VimEnter',
         branch = '0.1.x',
         dependencies = {
@@ -95,17 +96,15 @@ require("lazy").setup({
                 end, { desc = '[S]earch [N]eovim files' })
         end,
     },
-    "prabirshrestha/asyncomplete.vim",
-    "mhinz/vim-signify",
-    "neoclide/coc.nvim",
-    "fatih/vim-go",
+    "prabirshrestha/asyncomplete.vim", -- ??
+    "mhinz/vim-signify", -- should show changes in the left column
+    "neoclide/coc.nvim", -- code completion
+    "fatih/vim-go", -- go stuff :GoBuild :GoRun etc
     "neovim/nvim-lspconfig",
     "hrsh7th/nvim-cmp",
     "jacoborus/tender.vim",
-    "tpope/vim-fugitive",
-    "numToStr/Comment.nvim",
+    "tpope/vim-fugitive", -- Git plugin
     "echasnovski/mini.icons",
-    "BurntSushi/ripgrep",
     "nvim-treesitter/nvim-treesitter",
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     { -- Useful plugin to show you pending keybinds.

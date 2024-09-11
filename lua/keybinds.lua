@@ -46,6 +46,14 @@ vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv=gv",{}) -- moving lines up up in vis
 -- TABS
 -- xgt goes to tab where x is the index (starts from 1)
 
+-- OTHER
+-- gc toggle inline commenting
+-- gb toggle block commenting
+-- gcO create commented line above
+-- gco create commented line below
+-- gcA create comment end of line
+
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
