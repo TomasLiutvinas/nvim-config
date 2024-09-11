@@ -5,7 +5,7 @@ But hopefully can pull and run anywhere.
 
 # Requirements
 - Chocolatey
-- 
+
 ```choco install mingw```
 
 # Issues
