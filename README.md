@@ -8,6 +8,9 @@ But hopefully can pull and run anywhere.
 - Chocolatey
 
 ```choco install mingw```
+```choco install python311```
+```pip3 install pynvim```
+```choco install luarocks```
 
 # Issues
 ## No C compiler found! "cc", "gcc", "clang", "cl", "zig" are not executable.
