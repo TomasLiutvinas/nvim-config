@@ -53,18 +53,6 @@ return {
           })
         end,
 
-        ['tsserver'] = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.tsserver.setup({
-            capabilities = capabilities,
-            settings = {
-              completions = {
-                completeFunctionCalls = true
-              }
-            }
-          })
-        end,
-
         ["lua_ls"] = function()
           local lspconfig = require("lspconfig")
           lspconfig.lua_ls.setup {
