@@ -19,12 +19,37 @@ vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv=gv",{}) -- moving lines up up in vis
 vim.api.nvim_create_user_command('W', 'w', { desc = "I am stupid." })
 vim.api.nvim_create_user_command('Q', 'q', { desc = "I am stupid." })
 
+-- better indents
+vim.keymap.set("x", "<", "<gv")
+vim.keymap.set("x", ">", ">gv")
+
+-- buffer
+vim.keymap.set("n", "<M-h>", "<cmd>bprev<CR>")
+vim.keymap.set("n", "<M-l>", "<cmd>bnext<CR>")
+vim.keymap.set("n", "<leader>ba", "<cmd>%bd|e#<cr>")
+
+-- avoid vim register for some operations
+vim.keymap.set("n", "x", [["_x]])
+vim.keymap.set("x", "p", [["_dP]])
+vim.keymap.set("n", "<leader>Y", [["+Y]]) -- copy current line to system clipboard
+vim.keymap.set("n", "<leader>vp", "`[v`]") -- reselect pasted text
+vim.keymap.set("n", "<leader>y", [["+y]]) -- copy to system clipboard
+vim.keymap.set("n", "<leader>p", [["+p]]) -- paste from system clipboard
+vim.keymap.set("x", "<leader>y", [["+y]]) -- copy to system clipboard
+vim.keymap.set("x", "<leader>p", [["+p]]) -- paste from system clipboard
+vim.keymap.set("n", "YY", "va{Vy")
+
+vim.keymap.set("n", "<S-Tab>", "<cmd>tabNext<CR>") -- cycle between tabs
+
+-- search and replace
+vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 -- telescope
 -- <C-n> Next
 -- <C-p> Previous
 -- <C-x> Open selection in split
 -- <C-v> Open selection in vsplit
--- <C-t> Open selection in new tab
+-- <C-t> Open selection- n new tab
 -- <C-c> Close telescope window
 -- Preview Tab
 -- <C-k> scroll right
