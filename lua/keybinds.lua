@@ -16,6 +16,10 @@ vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi',{}) -- insert mode line up
 vim.keymap.set('x', '<A-j>', ":m '>+1<CR>gv=gv",{}) -- moving lines up down in visual mode
 vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv=gv",{}) -- moving lines up up in visual mode
 
+vim.api.nvim_create_user_command('W', 'w', { desc = "I am stupid." })
+vim.api.nvim_create_user_command('Q', 'q', { desc = "I am stupid." })
+
+-- telescope
 -- <C-n> Next
 -- <C-p> Previous
 -- <C-x> Open selection in split
