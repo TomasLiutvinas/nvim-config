@@ -15,7 +15,7 @@
   "mini.icons": { "branch": "main", "commit": "a2742459f0ee32806c2438ca06b4d8b331f3f4d4" },
   "nerdtree": { "branch": "master", "commit": "9b465acb2745beb988eff3c1e4aa75f349738230" },
   "nvim-cmp": { "branch": "main", "commit": "ae644feb7b67bf1ce4260c231d1d4300b19c6f30" },
-  "nvim-lspconfig": { "branch": "master", "commit": "dcf511d53fae9675c6fde4241d94b2daaa5e0cd5" },
+  "nvim-lspconfig": { "branch": "master", "commit": "3805bb215ca2eb3e047c947fc4bf2434ca473ff6" },
   "nvim-treesitter": { "branch": "master", "commit": "4f04fb7027ce786ac4adfd1c629ca40aea96ffec" },
   "nvim-treesitter-context": { "branch": "master", "commit": "78a81c7494e7d1a08dd1200b556933e513fd9f29" },
   "nvim-web-devicons": { "branch": "master", "commit": "56f17def81478e406e3a8ec4aa727558e79786f3" },

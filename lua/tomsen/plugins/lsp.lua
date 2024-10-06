@@ -30,7 +30,6 @@ return {
         "rust_analyzer",
         "gopls",
         "omnisharp",
-        "eslint",
         "html",
         "cssls",
       },
@@ -65,19 +64,6 @@ return {
                 }
               }
             }
-          }
-        end,
-
-        ["eslint"] = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.eslint.setup {
-            capabilities = capabilities,
-            settings = {
-              validate = "on",
-              packageManager = "yarn",
-            },
-            root_dir = lspconfig.util.root_pattern(".eslintrc.js", ".eslintrc.json", "package.json"),
-            filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
           }
         end,
       }
