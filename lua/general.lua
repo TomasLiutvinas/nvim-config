@@ -1,6 +1,6 @@
-vim.opt.tabstop = 4 -- number of spaces tab represents
-vim.opt.softtabstop = 4 -- controls the number of spaces TAB counts when editing
-vim.opt.shiftwidth = 4 -- auto indentation with << >> ==
+vim.opt.tabstop = 2 -- number of spaces tab represents
+vim.opt.softtabstop = 2 -- controls the number of spaces TAB counts when editing
+vim.opt.shiftwidth = 2 -- auto indentation with << >> ==
 vim.opt.expandtab = true  -- converts tabs into spaces
 
 vim.g.mapleader= " " -- leader key for keybinds
@@ -31,3 +31,10 @@ vim.opt.hlsearch = true -- highlights searching
 
 vim.opt.mouse = 'a' -- enables mouse for all modes, not quite sure why I want this
 vim.g.OmniSharp_server_use_net6 = 1 -- specific to omnisharp: congfigures omnisharp to use net6, not sure why I want this
+
+-- recommended for coc plugin
+vim.opt.backup = false
+vim.opt.writebackup = false
+
+vim.opt.termguicolors = true
+vim.cmd("syntax enable")

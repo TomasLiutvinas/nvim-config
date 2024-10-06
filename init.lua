@@ -1,3 +1,6 @@
 require("general")
-require("plugins")
+
 require("keybinds")
+
+-- require("plugins")
+require("tomsen")

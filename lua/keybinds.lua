@@ -1,8 +1,4 @@
-local builtin = require('telescope.builtin')
-
 vim.keymap.set('n', 'NT', ':NERDTree<CR>', { desc = 'Open side panel (NERDTree)' })
-vim.keymap.set('n', 'FN', builtin.find_files, { desc = 'Find filenames' })
-vim.keymap.set('n', 'FT', builtin.live_grep, { desc = 'Find in files via grep' })
 
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -30,7 +26,14 @@ vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi',{}) -- insert mode line up
 vim.keymap.set('x', '<A-j>', ":m '>+1<CR>gv=gv",{}) -- moving lines up down in visual mode
 vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv=gv",{}) -- moving lines up up in visual mode
 
--- Telescope search Keys:
+--coc
+
+-- Function to check for backspace
+function _G.CheckBackspace()
+  local col = vim.fn.col('.') - 1
+  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+
 -- <C-n> Next
 -- <C-p> Previous
 -- <C-x> Open selection in split
@@ -52,7 +55,6 @@ vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv=gv",{}) -- moving lines up up in vis
 -- gcO create commented line above
 -- gco create commented line below
 -- gcA create comment end of line
-
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
