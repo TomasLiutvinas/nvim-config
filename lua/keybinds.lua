@@ -1,6 +1,5 @@
 vim.keymap.set('n', 'NT', ':NERDTree<CR>', { desc = 'Open side panel (NERDTree)' })
 
-
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', '<leader>vrr', vim.lsp.buf.references)
@@ -25,14 +24,6 @@ vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi',{}) -- insert mode line down
 vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi',{}) -- insert mode line up
 vim.keymap.set('x', '<A-j>', ":m '>+1<CR>gv=gv",{}) -- moving lines up down in visual mode
 vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv=gv",{}) -- moving lines up up in visual mode
-
---coc
-
--- Function to check for backspace
-function _G.CheckBackspace()
-  local col = vim.fn.col('.') - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-end
 
 -- <C-n> Next
 -- <C-p> Previous
