@@ -40,6 +40,11 @@ vim.keymap.set(
     "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
 )
 
+-- reload config
+vim.keymap.set("n", "<leader><leader>", function()
+    vim.cmd("so")
+end)
+
 -- buffer
 vim.keymap.set("n", "<M-h>", "<cmd>bprev<CR>")
 vim.keymap.set("n", "<M-l>", "<cmd>bnext<CR>")
