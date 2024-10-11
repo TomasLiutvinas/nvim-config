@@ -20,26 +20,43 @@ vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv=gv",{}) -- moving lines up up in vis
 vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("x", ">", ">gv")
 
+-- some more rarely used
+vim.keymap.set("n", "J", "mzJ`z") -- joins line with space added, and returns cursor to the position
+vim.keymap.set("n", "<C-d>", "<C-d>zz") -- scroll down half a page and do zz
+vim.keymap.set("n", "<C-u>", "<C-u>zz") -- scroll up half a page and do zz
+vim.keymap.set("n", "n", "nzzzv") -- not entirely sure, but normal n, center screen and enters visual mode?
+vim.keymap.set("n", "N", "Nzzzv") -- not entirely sure, but normal N, center screen and enters visual mode?
+
+vim.keymap.set("i", "<C-c>", "<Esc>")
+
+vim.keymap.set("n", "Q", "<nop>") -- disables Q
+
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format) -- format all
+
+-- for Go err handling
+vim.keymap.set(
+    "n",
+    "<leader>ee",
+    "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
+)
+
 -- buffer
 vim.keymap.set("n", "<M-h>", "<cmd>bprev<CR>")
 vim.keymap.set("n", "<M-l>", "<cmd>bnext<CR>")
 vim.keymap.set("n", "<leader>ba", "<cmd>%bd|e#<cr>")
 
 -- avoid vim register for some operations
-vim.keymap.set("n", "x", [["_x]])
-vim.keymap.set("x", "p", [["_dP]])
+vim.keymap.set("n", "x", [["_x]]) -- deleting without copying text into default buffer
+vim.keymap.set("x", "p", [["_dP]]) -- pasting without copying into default buffer
 vim.keymap.set("n", "<leader>Y", [["+Y]]) -- copy current line to system clipboard
 vim.keymap.set("n", "<leader>vp", "`[v`]") -- reselect pasted text
 vim.keymap.set("n", "<leader>y", [["+y]]) -- copy to system clipboard
 vim.keymap.set("n", "<leader>p", [["+p]]) -- paste from system clipboard
 vim.keymap.set("x", "<leader>y", [["+y]]) -- copy to system clipboard
 vim.keymap.set("x", "<leader>p", [["+p]]) -- paste from system clipboard
-vim.keymap.set("n", "YY", "va{Vy")
-
-vim.keymap.set("n", "<S-Tab>", "<cmd>tabNext<CR>") -- cycle between tabs
 
 -- search and replace
-vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>rn", ":%s/<C-r><C-w><C-r><C-w>//gI<Left><Left><Left>")
 
 -- telescope
 -- <C-n> Next
