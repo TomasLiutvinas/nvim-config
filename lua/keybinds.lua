@@ -40,8 +40,8 @@ vim.keymap.set(
     "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
 )
 
--- reload config
-vim.keymap.set("n", "<leader><leader>", function()
+-- loads current file into nvim config
+vim.keymap.set("n", "<leader>x", function()
     vim.cmd("so")
 end)
 
@@ -62,6 +62,10 @@ vim.keymap.set("x", "<leader>p", [["+p]]) -- paste from system clipboard
 
 -- search and replace
 vim.keymap.set("n", "<leader>rn", ":%s/<C-r><C-w><C-r><C-w>//gI<Left><Left><Left>")
+
+-- edit settings
+
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/appdata/local/nvim/<CR>");
 
 -- telescope
 -- <C-n> Next
