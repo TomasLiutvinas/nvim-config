@@ -40,6 +40,21 @@ return {
           }
         end,
 
+        cssls = function()
+          local lspconfig = require("lspconfig")
+          lspconfig.cssls.setup({
+            -- cmd = { "vscode-css-language-server.cmd", "--stdio" }, idk
+            capabilities = capabilities,
+            settings = {
+              css = {
+                lint = {
+                  unknownAtRules = "ignore" -- Ignores Tailwind @rules
+                }
+              }
+            }
+          })
+        end,
+
         omnisharp = function()
           local lspconfig = require("lspconfig")
           lspconfig.omnisharp.setup({
