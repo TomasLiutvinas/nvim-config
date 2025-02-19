@@ -63,32 +63,8 @@ vim.keymap.set("x", "<leader>p", [["+p]]) -- paste from system clipboard
 -- search and replace
 vim.keymap.set("n", "<leader>rn", ":%s/<C-r><C-w><C-r><C-w>//gI<Left><Left><Left>")
 
--- edit settings
-
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/appdata/local/nvim/<CR>");
-
--- telescope
--- <C-n> Next
--- <C-p> Previous
--- <C-x> Open selection in split
--- <C-v> Open selection in vsplit
--- <C-t> Open selection- n new tab
--- <C-c> Close telescope window
--- Preview Tab
--- <C-k> scroll right
--- <C-f> scroll left
--- <C-u> scroll up
--- <C-d> scroll down
-
 -- TABS
 -- xgt goes to tab where x is the index (starts from 1)
-
--- OTHER
--- gc toggle inline commenting
--- gb toggle block commenting
--- gcO create commented line above
--- gco create commented line below
--- gcA create comment end of line
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',

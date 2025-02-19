@@ -1,3 +1,16 @@
+-- telescope
+-- <C-n> Next
+-- <C-p> Previous
+-- <C-x> Open selection in split
+-- <C-v> Open selection in vsplit
+-- <C-t> Open selection- n new tab
+-- <C-c> Close telescope window
+-- Preview Tab
+-- <C-k> scroll right
+-- <C-f> scroll left
+-- <C-u> scroll up
+-- <C-d> scroll down
+--
 return {
  -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim', -- allows leader s f/k/g/d...
