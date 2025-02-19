@@ -69,7 +69,8 @@ return {
           ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
           ["<C-t>"] = { "actions.select", opts = { tab = true } },
           ["<C-p>"] = "actions.preview",
-          ["<C-c>"] = { "actions.close", mode = "n" },
+          ["<ESC>"] = { "actions.close", mode = "n" },
+          ["q"] = { "actions.close", mode = "n" },
           ["<C-l>"] = "actions.refresh",
           ["-"] = { "actions.parent", mode = "n" },
           ["_"] = { "actions.open_cwd", mode = "n" },
@@ -134,7 +135,8 @@ return {
           max_height = 0,
           border = "rounded",
           win_options = {
-            winblend = 0,
+            winblend = 0,                                          -- Optional: Adjust transparency of the entire window
+            winhighlight = "Normal:NormalNC,FloatBorder:NormalNC", -- Set background to transparent
           },
           -- optionally override the oil buffers window title with custom function: fun(winid: integer): string
           get_win_title = nil,
