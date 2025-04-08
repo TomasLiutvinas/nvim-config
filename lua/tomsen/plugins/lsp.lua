@@ -32,6 +32,7 @@ return {
         "omnisharp",
         "html",
         "cssls",
+        "pyright",
       },
       handlers = {
         function(server_name) -- default handler (optional)
@@ -55,6 +56,23 @@ return {
           })
         end,
 
+        pylsp = function()
+          local lspconfig = require("lspconfig")
+          lspconfig.pylsp.setup({
+            capabilities = capabilities,
+            settings = {
+              pylsp = {
+                plugins = {
+                  pycodestyle = {
+                    ignore = { "E501" },
+                    maxLineLength = 120,
+                  },
+                },
+              },
+            },
+          })
+        end,
+
         omnisharp = function()
           local lspconfig = require("lspconfig")
           lspconfig.omnisharp.setup({
@@ -66,6 +84,7 @@ return {
             filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props', 'csx', 'targets' }
           })
         end,
+
 
         ["lua_ls"] = function()
           local lspconfig = require("lspconfig")
