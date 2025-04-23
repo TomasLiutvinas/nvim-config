@@ -29,7 +29,8 @@ vim.keymap.set("n", "N", "Nzzzv") -- not entirely sure, but normal N, center scr
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
-vim.keymap.set("n", "Q", "<nop>") -- disables Q
+vim.keymap.set("n", "Q", "<Nop>") -- disables Q
+vim.keymap.set("v", "K", "<Nop>", { desc = "Disable K in visual mode" })
 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format) -- format all
 
