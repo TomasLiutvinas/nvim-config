@@ -61,6 +61,12 @@ vim.keymap.set("n", "<leader>p", [["+p]]) -- paste from system clipboard
 vim.keymap.set("x", "<leader>y", [["+y]]) -- copy to system clipboard
 vim.keymap.set("x", "<leader>p", [["+p]]) -- paste from system clipboard
 
+-- Quickfix open/close prev/next
+vim.keymap.set('n', '<leader>q', ':copen<CR>', { desc = 'Quickfix: Open list' })
+vim.keymap.set('n', '<leader>c', ':cclose<CR>', { desc = 'Quickfix: Close list' })
+vim.keymap.set('n', ']q', ':cnext<CR>', { desc = 'Quickfix: Next item' })
+vim.keymap.set('n', '[q', ':cprev<CR>', { desc = 'Quickfix: Prev item' })
+
 -- search and replace
 vim.keymap.set("n", "<leader>rn", ":%s/<C-r><C-w><C-r><C-w>//gI<Left><Left><Left>")
 
