@@ -16,6 +16,12 @@ vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi',{}) -- insert mode line up
 vim.keymap.set('x', '<A-j>', ":m '>+1<CR>gv=gv",{}) -- moving lines up down in visual mode
 vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv=gv",{}) -- moving lines up up in visual mode
 
+vim.keymap.set('n', '=', '+', { desc = 'Move down screen line' })
+vim.keymap.set('n', '+', '$', { desc = 'Move down screen line' })
+
+-- Format JSON
+vim.keymap.set("n", "<leader>jq", ":%!jq .<CR>", { desc = "Format JSON with jq" })
+
 -- better indents
 vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("x", ">", ">gv")
