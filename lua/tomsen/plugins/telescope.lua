@@ -13,12 +13,12 @@
 --
 return {
   -- Fuzzy Finder (files, lsp, etc)
-  'nvim-telescope/telescope.nvim',   -- allows leader s f/k/g/d...
+  'nvim-telescope/telescope.nvim', -- allows leader s f/k/g/d...
   event = 'VimEnter',
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    {   -- If encountering errors, see telescope-fzf-native README for installation instructions
+    { -- If encountering errors, see telescope-fzf-native README for installation instructions
       'nvim-telescope/telescope-fzf-native.nvim',
 
       -- `build` is used to run some command when the plugin is installed/updated.
@@ -40,8 +40,8 @@ return {
     require('telescope').setup {
       defaults = {
         file_ignore_patterns = {
-          "%.png$", "%.jpg$", "%.jpeg$", "%.gif$", "%.bmp$", "%.webp$", "%.svg$",       -- Image files
-          "%.mp3$", "%.wav$", "%.ogg$", "%.flac$", "%.aac$", "%.m4a$", "%.wma$"         -- Audio files
+          "%.png$", "%.jpg$", "%.jpeg$", "%.gif$", "%.bmp$", "%.webp$", "%.svg$", -- Image files
+          "%.mp3$", "%.wav$", "%.ogg$", "%.flac$", "%.aac$", "%.m4a$", "%.wma$"   -- Audio files
         }
       },
       extensions = {
@@ -67,6 +67,19 @@ return {
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+
+    vim.keymap.set('n', '<leader>se', function()
+      vim.ui.input({ prompt = "Enter glob (e.g., *.cs): " }, function(input)
+        if input then
+          require('telescope.builtin').live_grep({
+            additional_args = function()
+              return { "--glob", input }
+            end,
+            prompt_title = 'Live Grep with Extension',
+          })
+        end
+      end)
+    end, { desc = '[S]earch by [E]xtension (grep)' })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()

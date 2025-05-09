@@ -9,12 +9,29 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- moving lines up and down
-vim.keymap.set('n', '<A-j>', ':m .+1<CR>==',{ desc = 'Move line down' }) -- normal mode
-vim.keymap.set('n', '<A-k>', ':m .-2<CR>==',{ desc = 'Move line up' }) -- normal mode
+-- vim.keymap.set('n', '<A-j>', ':m .+1<CR>==',{ desc = 'Move line down' }) -- normal mode
+-- vim.keymap.set('n', '<A-k>', ':m .-2<CR>==',{ desc = 'Move line up' }) -- normal mode
+-- -- need to use this instead of == >>>>> vim.lsp.buf.format
+vim.keymap.set('n', '<A-j>', function()
+  vim.cmd('m .+1')                 -- move line down
+  vim.lsp.buf.format({ async = true })  -- format after move
+end, { desc = 'Move line down with LSP format' })
+
+vim.keymap.set('n', '<A-k>', function()
+  vim.cmd('m .-2')                 -- move line up
+  vim.lsp.buf.format({ async = true })  -- format after move
+end, { desc = 'Move line up with LSP format' })
+
 vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi',{}) -- insert mode line down
 vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi',{}) -- insert mode line up
 vim.keymap.set('x', '<A-j>', ":m '>+1<CR>gv=gv",{}) -- moving lines up down in visual mode
 vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv=gv",{}) -- moving lines up up in visual mode
+
+vim.keymap.set('n', '=', '+', { desc = 'Move down screen line' })
+vim.keymap.set('n', '+', '$', { desc = 'Move down screen line' })
+
+-- Format JSON
+vim.keymap.set("n", "<leader>jq", ":%!jq .<CR>", { desc = "Format JSON with jq" })
 
 -- better indents
 vim.keymap.set("x", "<", "<gv")
@@ -29,7 +46,8 @@ vim.keymap.set("n", "N", "Nzzzv") -- not entirely sure, but normal N, center scr
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
-vim.keymap.set("n", "Q", "<nop>") -- disables Q
+vim.keymap.set("n", "Q", "<Nop>") -- disables Q
+vim.keymap.set("v", "K", "<Nop>", { desc = "Disable K in visual mode" })
 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format) -- format all
 
@@ -59,6 +77,12 @@ vim.keymap.set("n", "<leader>y", [["+y]]) -- copy to system clipboard
 vim.keymap.set("n", "<leader>p", [["+p]]) -- paste from system clipboard
 vim.keymap.set("x", "<leader>y", [["+y]]) -- copy to system clipboard
 vim.keymap.set("x", "<leader>p", [["+p]]) -- paste from system clipboard
+
+-- Quickfix open/close prev/next
+vim.keymap.set('n', '<leader>q', ':copen<CR>', { desc = 'Quickfix: Open list' })
+vim.keymap.set('n', '<leader>c', ':cclose<CR>', { desc = 'Quickfix: Close list' })
+vim.keymap.set('n', ']q', ':cnext<CR>', { desc = 'Quickfix: Next item' })
+vim.keymap.set('n', '[q', ':cprev<CR>', { desc = 'Quickfix: Prev item' })
 
 -- search and replace
 vim.keymap.set("n", "<leader>rn", ":%s/<C-r><C-w><C-r><C-w>//gI<Left><Left><Left>")
