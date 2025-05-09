@@ -8,6 +8,8 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Toggle undotree'})
+
 -- moving lines up and down
 -- vim.keymap.set('n', '<A-j>', ':m .+1<CR>==',{ desc = 'Move line down' }) -- normal mode
 -- vim.keymap.set('n', '<A-k>', ':m .-2<CR>==',{ desc = 'Move line up' }) -- normal mode
@@ -114,3 +116,40 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>q', function() vim.diagnostic.setloclist() end, { desc = 'Open diagnostic [Q]uickfix list' })
   end
 })
+
+
+-- Prompting help
+
+local append_register = "+" -- system clipboard
+
+function AppendVisualSelection()
+  -- Reselect visual range
+  vim.cmd('normal! "vy') -- yank visually selected text into register v
+
+  -- Get lines from register
+  local selection = vim.fn.getreg("v")
+
+  -- Wrap in ```
+  local wrapped = "```\n" .. selection .. "\n```"
+
+  -- Append to system clipboard
+  local current = vim.fn.getreg(append_register)
+  vim.fn.setreg(append_register, current .. wrapped .. "\n")
+
+  print("Appended selection to clipboard.")
+end
+
+function ClearClipboard()
+  vim.fn.setreg(append_register, "")
+  print("Clipboard cleared.")
+end
+
+-- Use <leader>c in visual mode to append wrapped selection
+vim.keymap.set("v", "<leader>c", function()
+  AppendVisualSelection()
+end, { desc = "Append selection to clipboard" })
+
+-- Use <leader>cl in normal mode to clear clipboard
+vim.keymap.set("n", "<leader>cl", function()
+  ClearClipboard()
+end, { desc = "Clear clipboard" })
