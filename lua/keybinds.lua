@@ -9,8 +9,19 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- moving lines up and down
-vim.keymap.set('n', '<A-j>', ':m .+1<CR>==',{ desc = 'Move line down' }) -- normal mode
-vim.keymap.set('n', '<A-k>', ':m .-2<CR>==',{ desc = 'Move line up' }) -- normal mode
+-- vim.keymap.set('n', '<A-j>', ':m .+1<CR>==',{ desc = 'Move line down' }) -- normal mode
+-- vim.keymap.set('n', '<A-k>', ':m .-2<CR>==',{ desc = 'Move line up' }) -- normal mode
+-- -- need to use this instead of == >>>>> vim.lsp.buf.format
+vim.keymap.set('n', '<A-j>', function()
+  vim.cmd('m .+1')                 -- move line down
+  vim.lsp.buf.format({ async = true })  -- format after move
+end, { desc = 'Move line down with LSP format' })
+
+vim.keymap.set('n', '<A-k>', function()
+  vim.cmd('m .-2')                 -- move line up
+  vim.lsp.buf.format({ async = true })  -- format after move
+end, { desc = 'Move line up with LSP format' })
+
 vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi',{}) -- insert mode line down
 vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi',{}) -- insert mode line up
 vim.keymap.set('x', '<A-j>', ":m '>+1<CR>gv=gv",{}) -- moving lines up down in visual mode
