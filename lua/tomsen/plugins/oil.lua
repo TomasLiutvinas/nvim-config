@@ -63,6 +63,32 @@ return {
         -- Set to `false` to remove a keymap
         -- See :help oil-actions for a list of all available actions
         keymaps = {
+          ["<leader>oe"] = {
+            function()
+              local oil_win_id = vim.api.nvim_get_current_win()
+              local buf_nr = vim.api.nvim_win_get_buf(oil_win_id)
+
+              -- Try to access a potential Oil.nvim API (this is a guess)
+              local current_dir = nil
+              if package.loaded.oil then
+                if type(package.loaded.oil.get_current_dir) == 'function' then
+                  current_dir = package.loaded.oil.get_current_dir(buf_nr)
+                elseif type(package.loaded.oil.buf_to_path) == 'function' then
+                  current_dir = package.loaded.oil.buf_to_path(buf_nr)
+                elseif package.loaded.oil.path then
+                  current_dir = package.loaded.oil.path
+                end
+              end
+
+              if current_dir and current_dir ~= '' then
+                vim.fn.system('powershell -Command "explorer.exe \\"' .. current_dir .. '\\""')
+              else
+                print("Could not determine the current directory via Oil.nvim API (if it exists).")
+              end
+            end,
+            mode = "n",
+            desc = "Open in Explorer",
+          },
           ["g?"] = { "actions.show_help", mode = "n" },
           ["<CR>"] = "actions.select",
           ["<C-s>"] = { "actions.select", opts = { vertical = true } },

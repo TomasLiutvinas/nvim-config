@@ -149,7 +149,8 @@ vim.keymap.set("v", "<leader>c", function()
   AppendVisualSelection()
 end, { desc = "Append selection to clipboard" })
 
--- Use <leader>cl in normal mode to clear clipboard
-vim.keymap.set("n", "<leader>cl", function()
+-- Use <leader>cn in normal mode to start new clip
+vim.keymap.set("v", "<leader>cn", function()
   ClearClipboard()
-end, { desc = "Clear clipboard" })
+  AppendVisualSelection()
+end, { desc = "Create new clipboard" })
