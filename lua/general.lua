@@ -25,12 +25,12 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- setting chars
 
 vim.opt.inccommand = 'split' -- should show something related to replacing in real time in a split window
 
-vim.opt.scrolloff = 10 -- distance for edging of the screen for the cursor
+vim.opt.scrolloff = 5 -- distance for edging of the screen for the cursor
 
 vim.opt.hlsearch = true -- highlights searching
 
 vim.opt.mouse = 'a' -- enables mouse for all modes, not quite sure why I want this
-vim.g.OmniSharp_server_use_net6 = 1 -- specific to omnisharp: congfigures omnisharp to use net6, not sure why I want this
+-- vim.g.OmniSharp_server_use_net6 = 1 -- specific to omnisharp: congfigures omnisharp to use net6, not sure why I want this
 
 -- recommended for coc plugin
 vim.opt.backup = false
