@@ -1,0 +1,49 @@
+return {
+  "olimorris/codecompanion.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "github/copilot.vim",
+  },
+  config = function()
+    local cwd = vim.loop.cwd()
+
+      require("codecompanion").setup({
+          strategies = {
+            chat = {
+              name = "copilot",
+              model = "claude-sonnet-4.5",
+            },
+          },
+
+        tools = {
+          filesystem = {
+            enabled = true,
+            root = cwd,
+            follow_symlinks = false,
+            allow_new_files = true,
+            allow_delete = false,
+            allow_edit = true,
+          },
+          buffer = true,
+          search = true,
+          git = false,
+          terminal = false,
+          diagnostics = true,
+        },
+      })
+
+      local map = vim.keymap.set
+
+      map("n", "<leader>cc", function()
+        vim.cmd("CodeCompanionChat")
+        vim.cmd("wincmd L")
+      end, { desc = "Open CodeCompanion chat and move window right" })
+
+      map("v", "<leader>ci", "<cmd>CodeCompanion<cr>", { desc = "Run CodeCompanion on selection" })
+      map("n", "<leader>ci", "<cmd>CodeCompanion<cr>", { desc = "Run CodeCompanion on current line/range" })
+
+      map("n", "<leader>ca", "<cmd>CodeCompanionActions<cr>", { desc = "Open CodeCompanion actions palette" })
+      vim.g.copilot_enabled = false
+  end,
+}

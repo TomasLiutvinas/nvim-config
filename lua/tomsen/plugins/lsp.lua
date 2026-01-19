@@ -86,18 +86,51 @@ return {
 
         ["lua_ls"] = function()
           local lspconfig = require("lspconfig")
-          lspconfig.lua_ls.setup {
-            capabilities = capabilities,
-            settings = {
-              Lua = {
-                runtime = { version = "Lua 5.1" },
-                diagnostics = {
-                  globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-                }
-              }
-            }
+          local util = require("lspconfig.util")
+
+          local nvim_config = vim.fn.stdpath("config")
+
+          local lua_settings = {
+            Lua = {
+              runtime = { version = "LuaJIT" }, -- Neovim
+              diagnostics = {
+                globals = { "vim", "bit", "it", "describe", "before_each", "after_each" },
+              },
+              workspace = {
+                library = {
+                  [vim.env.VIMRUNTIME] = true,
+                  [vim.fn.stdpath("config")] = true,
+                },
+                checkThirdParty = false,
+              },
+              telemetry = { enable = false },
+            },
           }
+
+          lspconfig.lua_ls.setup({
+            capabilities = capabilities,
+
+            root_dir = function(fname)
+              -- ensure all ~/.config/nvim lua files share the same workspace (consistent settings)
+              if fname:sub(1, #nvim_config) == nvim_config then
+                return nvim_config
+              end
+              return util.root_pattern(".luarc.json", ".luarc.jsonc", ".git")(fname) or util.path.dirname(fname)
+            end,
+
+            on_new_config = function(new_config, _)
+              new_config.settings = vim.tbl_deep_extend("force", new_config.settings or {}, lua_settings)
+            end,
+
+            on_init = function(client)
+              client.config.settings = vim.tbl_deep_extend("force", client.config.settings or {}, lua_settings)
+              client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+            end,
+
+            settings = lua_settings,
+          })
         end,
+
       }
     })
 
