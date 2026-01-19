@@ -4,7 +4,7 @@ Work in progress, need to document more.
 Try :checkhealth
 But hopefully can pull and run anywhere.
 
-# Requirements
+# Requirements and issues (For windows only)
 - Chocolatey
 
 ```choco install mingw```
