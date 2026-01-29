@@ -24,7 +24,7 @@ no clue
 # Requirements and installation guide (MacOs)
 
 ## Requirements
-- Homebrew (idk what for probably to satisfy other requirements
+- Homebrew (idk what for probably to satisfy other requirements)
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
@@ -68,15 +68,15 @@ git clone git@github.com:TomasLiutvinas/nvim-config.git ~/.config/nvim
 ```bash
 nvim
 ```
-On first launch, lazy.nvim will do everythin (idk what exactly)
+On first launch, lazy.nvim will do everything (idk what exactly)
 
 ### 4. Install LSP Servers
 After plugins are installed, run inside Neovim:
 ```vim
 :Mason
 ```
-Theddn install the language servers you need (e.g., lua_ls, tsserver, pyright).
-(this paragraph is AI generated, no clue what it means)
+Then install the language servers you need (e.g., lua_ls, tsserver, pyright).
+(this paragraph is ai generated, no clue what it means)
 
 ### 5. Verify Installation
 ```vim
