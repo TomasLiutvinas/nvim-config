@@ -1,14 +1,3 @@
-return {
-  "numToStr/Comment.nvim", -- commenting/uncommenting
-  config = function()
-    require 'Comment'.setup()
-  end
-}
-
--- OTHER
--- gc toggle inline commenting
--- gb toggle block commenting
--- gcO create commented line above
--- gco create commented line below
--- gcA create comment end of line
-
+-- Neovim 0.10+ ships built-in commenting via vim.comment (gc/gb/gco/gcO/gcA).
+-- Comment.nvim is no longer needed.
+return {}

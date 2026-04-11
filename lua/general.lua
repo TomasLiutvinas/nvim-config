@@ -37,6 +37,10 @@ vim.opt.writebackup = false
 
 vim.opt.termguicolors = true
 
+-- Shim: silence vim.tbl_flatten deprecation from plugins not yet updated for 0.12
+---@diagnostic disable-next-line: deprecated
+vim.tbl_flatten = function(t) return vim.iter(t):flatten(math.huge):totable() end
+
 -- GODOT specific: autolisten on {project}/godothost
 do
   local found = vim.fs.find("project.godot", { upward = true })
