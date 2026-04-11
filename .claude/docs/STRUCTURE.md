@@ -74,7 +74,7 @@
 ### `keybinds.lua`
 **Purpose:** Generic, non-plugin-specific keybinds  
 **Contains:**
-- Window navigation (`<C-hjkl>`)
+- Window navigation (`<C-w>hjkl` — note: `<C-hjkl>` is overridden by treewalker in n/v mode)
 - Text manipulation (moving lines, indenting)
 - Search highlighting (`<Esc>` to clear)
 - Buffer operations
@@ -193,7 +193,7 @@ Plugin keybind  → plugins/{plugin}.lua
 ```
 
 Examples:
-- `<C-h>` (window nav) → `keybinds.lua` ✓
+- `<C-w>h` (window nav) → native / `keybinds.lua` ✓ (`<C-h>` overridden by treewalker)
 - `gd` (LSP go to definition) → `plugins/lsp.lua` ✓
 - `<leader>sf` (Telescope find files) → `plugins/telescope.lua` ✓
 

@@ -43,7 +43,7 @@ init.lua loads in this order:
 ### Generic (keybinds.lua)
 | Key | Action |
 |-----|--------|
-| `<C-hjkl>` | Navigate windows |
+| `<C-w>hjkl` | Navigate windows (`<C-hjkl>` is taken by treewalker in n/v mode) |
 | `<A-jk>` | Move lines up/down |
 | `<leader>u` | Toggle undotree |
 | `<leader>f` | Format buffer |
@@ -81,14 +81,14 @@ init.lua loads in this order:
 ## 🛠️ Common Tasks
 
 ### Add New LSP Server
-Edit `lua/tomsen/plugins/lsp.lua`:
+Edit `lua/tomsen/plugins/lsp.lua` — add to the `servers` table:
 ```lua
-ensure_installed = {
-  "lua_ls",
-  "rust_analyzer",
-  "your_server_here",  -- Add this
+local servers = {
+  gopls = {},
+  your_server_here = {},  -- Add this
 }
 ```
+Mason will install it automatically on next launch.
 
 ### Change Hover Border Color
 Edit `lua/theme.lua`:
@@ -123,8 +123,6 @@ end
 
 - **STRUCTURE.md** - Complete file organization
 - **ARCHITECTURE.md** - Visual diagrams & patterns
-- **MIGRATION.md** - Testing checklist
-- **CHANGES_SUMMARY.md** - Recent changes
 
 ## ⚠️ Important Rules
 
@@ -154,7 +152,7 @@ rm -rf ~/.local/state/nvim
 
 ### Update Plugins
 ```vim
-:Lazy sync
+:Lazy update
 ```
 
 ## 🆘 Troubleshooting
@@ -169,5 +167,5 @@ rm -rf ~/.local/state/nvim
 
 ---
 
-**Last Updated:** January 30, 2025
-**Neovim Version:** 0.11+
+**Last Updated:** 2026-04-11
+**Neovim Version:** 0.12+

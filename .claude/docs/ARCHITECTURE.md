@@ -149,7 +149,7 @@ User presses "K" on symbol
 | Line numbers on | `general.lua` | Core editor setting |
 | Hover border = rounded | `lsp_config.lua` | LSP UI concern |
 | Hover color = red | `theme.lua` | Visual theme concern |
-| Window nav `<C-h>` | `keybinds.lua` | Generic keybind (no plugin) |
+| Window nav `<C-w>h` | `keybinds.lua` / native | `<C-h>` overridden by treewalker in n/v |
 | LSP goto def `gd` | `plugins/lsp.lua` | LSP-specific keybind |
 | Debug step `<F5>` | `plugins/nvim-dap.lua` | DAP-specific keybind |
 | Find files `<leader>sf` | `plugins/telescope.lua` | Telescope-specific keybind |
