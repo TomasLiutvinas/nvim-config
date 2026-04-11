@@ -4,6 +4,52 @@ Personal Neovim configuration. Requires **Neovim 0.12+**.
 
 ---
 
+# Requirements and installation guide (Arch Linux)
+
+## Requirements
+```bash
+sudo pacman -S neovim git ripgrep tree-sitter make gcc nodejs
+```
+
+Install a Nerd Font — e.g.:
+```bash
+yay -S ttf-jetbrains-mono-nerd
+```
+
+## Installation
+
+### 1. Backup Existing Config
+```bash
+mv ~/.config/nvim ~/.config/nvim.backup
+mv ~/.local/share/nvim ~/.local/share/nvim.backup
+mv ~/.local/state/nvim ~/.local/state/nvim.backup
+mv ~/.cache/nvim ~/.cache/nvim.backup
+```
+
+### 2. Clone the Configuration
+```bash
+git clone git@github.com:TomasLiutvinas/nvim-config.git ~/.config/nvim
+```
+
+### 3. Launch Neovim
+```bash
+nvim
+```
+On first launch, lazy.nvim will install all plugins automatically.
+
+### 4. Install parsers
+```vim
+:TSUpdate
+```
+Restart Neovim afterwards.
+
+### 5. Verify
+```vim
+:checkhealth
+```
+
+---
+
 # Requirements and installation guide (MacOs)
 
 ## Requirements
@@ -73,52 +119,6 @@ Then install the language servers you need (e.g., lua_ls, tsserver, pyright).
 (this paragraph is ai generated, no clue what it means)
 
 ### 6. Verify Installation
-```vim
-:checkhealth
-```
-
----
-
-# Requirements and installation guide (Arch Linux)
-
-## Requirements
-```bash
-sudo pacman -S neovim git ripgrep tree-sitter make gcc nodejs
-```
-
-Install a Nerd Font — e.g.:
-```bash
-yay -S ttf-jetbrains-mono-nerd
-```
-
-## Installation
-
-### 1. Backup Existing Config
-```bash
-mv ~/.config/nvim ~/.config/nvim.backup
-mv ~/.local/share/nvim ~/.local/share/nvim.backup
-mv ~/.local/state/nvim ~/.local/state/nvim.backup
-mv ~/.cache/nvim ~/.cache/nvim.backup
-```
-
-### 2. Clone the Configuration
-```bash
-git clone git@github.com:TomasLiutvinas/nvim-config.git ~/.config/nvim
-```
-
-### 3. Launch Neovim
-```bash
-nvim
-```
-On first launch, lazy.nvim will install all plugins automatically.
-
-### 4. Install parsers
-```vim
-:TSUpdate
-```
-Restart Neovim afterwards.
-
-### 5. Verify
 ```vim
 :checkhealth
 ```
