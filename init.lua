@@ -1,4 +1,6 @@
 require("general")
+require("lsp_config")
 require("keybinds")
 require("commands")
+require("theme")
 require("tomsen_init")

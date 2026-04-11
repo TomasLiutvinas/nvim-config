@@ -33,8 +33,15 @@ vim.opt.mouse = 'a' -- enables mouse for all modes, not quite sure why I want th
 -- vim.g.OmniSharp_server_use_net6 = 1 -- specific to omnisharp: congfigures omnisharp to use net6, not sure why I want this
 
 -- recommended for coc plugin
-vim.opt.backup = false
 vim.opt.writebackup = false
 
 vim.opt.termguicolors = true
-vim.cmd("syntax enable")
+
+-- GODOT specific: autolisten on {project}/godothost
+do
+  local found = vim.fs.find("project.godot", { upward = true })
+  if #found > 0 then
+    local root = vim.fs.dirname(found[1])
+    pcall(vim.fn.serverstart, root .. "/godothost")
+  end
+end

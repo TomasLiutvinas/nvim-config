@@ -24,8 +24,8 @@ vim.keymap.set('n', '<A-k>', function()
   vim.lsp.buf.format({ async = true }) -- format after move
 end, { desc = 'Move line up with LSP format' })
 
-vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { desc = 'Move line down' }) -- insert mode line down
-vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { desc = 'Move line up' })   -- insert mode line up
+vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { desc = 'Move line down' })   -- insert mode line down
+vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { desc = 'Move line up' })     -- insert mode line up
 vim.keymap.set('x', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' }) -- moving lines up down in visual mode
 vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })   -- moving lines up up in visual mode
 
@@ -40,7 +40,7 @@ vim.keymap.set("x", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("x", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- some more rarely used
-vim.keymap.set("n", "J", "mzgJ`z", { desc = "Join lines keep cursor" }) -- joins line with space added, and returns cursor to the position
+vim.keymap.set("n", "J", "mzgJ`z", { desc = "Join lines keep cursor" })         -- joins line with space added, and returns cursor to the position
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half-page down and center" }) -- scroll down half a page and do zz
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half-page up and center" })   -- scroll up half a page and do zz
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result and center" })   -- normal n, center screen and open folds
@@ -72,14 +72,14 @@ end, { desc = "Source current file" })
 vim.keymap.set("n", "<leader>ba", "<cmd>%bd|e#<cr>", { desc = "Close all buffers but current" })
 
 -- avoid vim register for some operations
-vim.keymap.set("n", "x", [["_x]], { desc = "Delete char without yanking" })               -- deleting without copying text into default buffer
-vim.keymap.set("x", "p", [["_dP]], { desc = "Paste without yanking selection" })         -- pasting without copying into default buffer
-vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to clipboard" })           -- copy current line to system clipboard
-vim.keymap.set("n", "<leader>vp", "`[v`]", { desc = "Reselect last paste" })             -- reselect pasted text
-vim.keymap.set("n", "<leader>y", [["+y]], { desc = "Yank to clipboard" })                -- copy to system clipboard
-vim.keymap.set("n", "<leader>p", [["+p]], { desc = "Paste from clipboard" })             -- paste from system clipboard
-vim.keymap.set("x", "<leader>y", [["+y]], { desc = "Yank selection to clipboard" })      -- copy to system clipboard
-vim.keymap.set("x", "<leader>p", [["+p]], { desc = "Paste from clipboard" })             -- paste from system clipboard
+vim.keymap.set("n", "x", [["_x]], { desc = "Delete char without yanking" })         -- deleting without copying text into default buffer
+vim.keymap.set("x", "p", [["_dP]], { desc = "Paste without yanking selection" })    -- pasting without copying into default buffer
+vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to clipboard" })      -- copy current line to system clipboard
+vim.keymap.set("n", "<leader>vp", "`[v`]", { desc = "Reselect last paste" })        -- reselect pasted text
+vim.keymap.set("n", "<leader>y", [["+y]], { desc = "Yank to clipboard" })           -- copy to system clipboard
+vim.keymap.set("n", "<leader>p", [["+p]], { desc = "Paste from clipboard" })        -- paste from system clipboard
+vim.keymap.set("x", "<leader>y", [["+y]], { desc = "Yank selection to clipboard" }) -- copy to system clipboard
+vim.keymap.set("x", "<leader>p", [["+p]], { desc = "Paste from clipboard" })        -- paste from system clipboard
 
 -- Quickfix open/close prev/next
 vim.keymap.set('n', '<leader>q', ':copen<CR>', { desc = 'Quickfix: Open list' })
@@ -101,29 +101,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
-})
-
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(e)
-    local opts = { buffer = e.buf }
-
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = e.buf, desc = "Go to Definition" })
-    -- K is owned by nvim-dap plugin config (DAP hover / LSP hover fallback)
-    -- vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts, { desc = "Show Hover Information" })
-
-    vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, { buffer = e.buf, desc = "Search Workspace Symbols" })
-    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, { buffer = e.buf, desc = "Show Diagnostics (float)" })
-    vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, { buffer = e.buf, desc = "Show Code Actions" })
-    vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, { buffer = e.buf, desc = "Show References" })
-    vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, { buffer = e.buf, desc = "Rename Symbol" })
-    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { buffer = e.buf, desc = "Show Signature Help" })
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_next, { buffer = e.buf, desc = "Next Diagnostic" })
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, { buffer = e.buf, desc = "Prev Diagnostic" })
-
-    -- keep <leader>q for quickfix; use loclist on <leader>l
-    vim.keymap.set('n', '<leader>l', function() vim.diagnostic.setloclist() end,
-      { buffer = e.buf, desc = 'Diagnostics to location list' })
-  end
 })
 
 -- Prompting help
@@ -153,7 +130,7 @@ function ClearClipboard()
 end
 
 -- Use <leader>c in visual mode to append wrapped selection
-vim.keymap.set("v", "<leader>c", function()
+vim.keymap.set("v", "<leader>ca", function()
   AppendVisualSelection()
 end, { desc = "Append selection to clipboard" })
 
