@@ -9,7 +9,7 @@ return {
     })
 
     require("nvim-treesitter").install({
-      "c", "lua", "vim", "vimdoc", "query",
+      "bash", "c", "lua", "vim", "vimdoc", "query",
       "javascript", "typescript", "jsdoc", "tsx",
       "go", "html", "json", "markdown", "markdown_inline",
       "scss", "sql", "gdscript", "godot_resource", "gdshader",

@@ -43,8 +43,8 @@ vim.tbl_flatten = function(t) return vim.iter(t):flatten(math.huge):totable() en
 
 -- GODOT specific: autolisten on {project}/godothost
 do
-  local found = vim.fs.find("project.godot", { upward = true })
-  if #found > 0 then
+  local ok, found = pcall(vim.fs.find, "project.godot", { upward = true })
+  if ok and #found > 0 then
     local root = vim.fs.dirname(found[1])
     pcall(vim.fn.serverstart, root .. "/godothost")
   end
