@@ -356,7 +356,7 @@ Then run `:TSUpdate` inside Neovim and restart.
 | Key / Command | Mode | Action |
 |---------------|------|--------|
 | `<leader>u` | n | Toggle undotree |
-| `<leader>=` | n | Toggle cloak (hide secrets in .env files) |
+| `<leader>=` | n | Toggle: Markdown read/edit mode (.md) or cloak secrets (.env) |
 | `<leader>jq` | n | Format JSON with `jq` |
 | `<leader>rn` | n | Rename word under cursor (substitute) |
 | `<leader>ee` | n | Insert Go `if err != nil` block |

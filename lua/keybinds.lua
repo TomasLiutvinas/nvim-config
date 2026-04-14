@@ -103,6 +103,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Smart toggle: render-markdown for .md files, cloak for .env files
+vim.keymap.set("n", "<leader>=", function()
+    if vim.bo.filetype == "markdown" then
+        vim.cmd("RenderMarkdown toggle")
+    else
+        local filename = vim.fn.expand("%:t")
+        if filename:match("^%.env") or filename == "wrangler.toml" or filename == ".dev.vars" then
+            vim.cmd("CloakToggle")
+        end
+    end
+end, { desc = "Toggle: Markdown read/edit mode | Cloak secrets" })
+
 -- Prompting help
 
 local append_register = "+" -- system clipboard
